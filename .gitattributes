@@ -1,0 +1,4 @@
+seeders/books.csv filter=lfs diff=lfs merge=lfs -text
+seeders/authors.csv filter=lfs diff=lfs merge=lfs -text
+seeders/genres.csv filter=lfs diff=lfs merge=lfs -text
+seeders/publishers.csv filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "sam",
+    "database": "Library_Management_System",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "sam",
+    "database": "Library_Management_System",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "sam",
+    "database": "Library_Management_System",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
