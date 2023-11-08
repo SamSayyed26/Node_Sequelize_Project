@@ -303,19 +303,10 @@ async function getBooksAfterYearLogic(year, itemsPerPage, offset, res) {
       limit: itemsPerPage,
       offset: offset,
     });
-      // const totalBooks = await Books.count({
-      //   where: {
-      //     Publication_Year: {
-      //       [Op.gte]: year,
-      //     },
-      //   },
-      // });
-
-      res.send({
-        // Books_On_This_Page: books.length,
-        Total_Books: count,
-        message: rows,
-      });
+    res.send({
+      Total_Books: count,
+      message: rows,
+    });
   } catch (err) {
     console.log(err);
   }
