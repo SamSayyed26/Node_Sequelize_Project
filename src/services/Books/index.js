@@ -294,7 +294,7 @@ async function searchBooksLogic(limit, offset, searchText, res) {
 
 async function getBooksAfterYearLogic(year, itemsPerPage, offset, res) {
   try {
-    const books = await Books.findAll({
+    const { count, rows } = await Books.findAndCountAll({
       where: {
         Publication_Year: {
           [Op.gte]: year,
@@ -303,23 +303,19 @@ async function getBooksAfterYearLogic(year, itemsPerPage, offset, res) {
       limit: itemsPerPage,
       offset: offset,
     });
-    if (books) {
-      const totalBooks = await Books.count({
-        where: {
-          Publication_Year: {
-            [Op.gte]: year,
-          },
-        },
-      });
+      // const totalBooks = await Books.count({
+      //   where: {
+      //     Publication_Year: {
+      //       [Op.gte]: year,
+      //     },
+      //   },
+      // });
 
       res.send({
-        Books_On_This_Page: books.length,
-        Total_Books: totalBooks,
-        message: books,
+        // Books_On_This_Page: books.length,
+        Total_Books: count,
+        message: rows,
       });
-    } else {
-      res.send({ message: "No books to show on this page" });
-    }
   } catch (err) {
     console.log(err);
   }
