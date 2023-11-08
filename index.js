@@ -1,37 +1,33 @@
 const express = require("express");
 const app = express();
 app.use(express.json());
-const session = require("express-session");
 
 const port = 3000;
 
-const signup = require("./routes/signupRoute");
-const login = require("./routes/loginRoute");
-const protectedData = require("./routes/protectedRoute");
-const logout = require("./routes/logoutRoute");
-const booksCrud = require("./routes/booksCrudRoute");
-const count = require("./routes/getCountRoute");
-const year = require("./routes/yearRoute");
-const publisherAndGenre = require("./routes/publisherAndGenreRoute");
-const returnBooks = require("./routes/getBooksRoute");
-const textSearch = require("./routes/textSearchRoute");
+const signup = require("./src/routes/signupRoute");
+const login = require("./src/routes/loginRoute");
+const protected = require("./src/routes/protectedRoute");
+const logout = require("./src/routes/logoutRoute");
+const count = require("./src/routes/getCountRoute");
+const year = require("./src/routes/yearRoute");
+const publisherAndGenre = require("./src/routes/publisherAndGenreRoute");
+const returnBooks = require("./src/routes/getBooksRoute");
+const textSearch = require("./src/routes/textSearchRoute");
 
-const secretKey = process.env.JWT_SECRET_KEY;
-
-app.use(
-  session({
-    secret: secretKey,
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+const booksCrud = require("./src/routes/booksCrudRoute");
+const authorsCrud = require("./src/routes/authorsCrudRoute");
+const publishersCrud = require("./src/routes/publishersCrudRoute");
+const genresCrud = require("./src/routes/genresCrudRoute");
 
 app.use("/", signup);
 app.use("/", login);
-app.use("/protected", protectedData);
+app.use("/protected", protected);
 app.use("/", logout);
 
 app.use("/", booksCrud);
+app.use("/", authorsCrud);
+app.use("/", publishersCrud);
+app.use("/", genresCrud);
 
 /*
  * Return the number of books of n publishers in sorted order
@@ -53,7 +49,7 @@ app.use("/", year);
  * Return the number books of the n publishers that have published in their own genre_speciality
  */
 
-// app.use("/", publisherAndGenre);
+app.use("/", publisherAndGenre);
 
 /**
  * Return the books of an author
